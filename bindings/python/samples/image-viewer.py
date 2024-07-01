@@ -15,16 +15,26 @@ image = Image.open(image_file)
 # Configuration for the matrix
 options = RGBMatrixOptions()
 options.rows = 32
+options.cols = 64
 options.chain_length = 1
 options.parallel = 1
-options.hardware_mapping = 'regular'  # If you have an Adafruit HAT: 'adafruit-hat'
+options.brightness = 100
+options.hardware_mapping = 'adafruit-hat' # If you have an Adafruit HAT: 'adafruit-hat'
 
 matrix = RGBMatrix(options = options)
 
 # Make image fit our screen.
 image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
+# print (image.width, image.height)
 
-matrix.SetImage(image.convert('RGB'))
+# Calculate the offset to center the image
+offset_x = (matrix.width - image.width) // 2
+offset_y = (matrix.height - image.height) // 2
+
+# Set the image on the matrix with the calculated offset
+matrix.SetImage(image.convert('RGB'), offset_x, offset_y)
+
+#matrix.SetImage(image.convert('RGB'),0,10)
 
 try:
     print("Press CTRL-C to stop.")
