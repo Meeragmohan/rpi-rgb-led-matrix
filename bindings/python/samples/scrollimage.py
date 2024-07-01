@@ -60,5 +60,4 @@ class ScrollImage(SampleBase):
         for i in range(self.matrix.height + self.image.height):
             offset_y = i - self.image.height
             self.matrix.SetImage(dispImage, offset_x, -offset_y)
-            self.matrix.Clear()
             time.sleep(0.04)
