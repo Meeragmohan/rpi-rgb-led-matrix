@@ -24,3 +24,26 @@ def get_stock_prices(symbols):
     return stockprices
 
 #print(get_stock_prices(symbols))
+
+
+#https://api.tiingo.com/tiingo/daily/aapl/prices?startDate=2019-01-02&token=e60c7b56d19b53db3c996d3eef965a571649944a
+
+def get_tinga_stock_prices(symbols):
+    stockprices = " ***     "
+    for symbol in symbols:
+        url = f"https://api.tiingo.com/tiingo/daily/{symbol}/prices?token=e60c7b56d19b53db3c996d3eef965a571649944a"
+        response = requests.get(url)
+        data = response.json()
+        if data:
+            try:
+                price = data[0]["close"]
+                stockprices += symbol + ": " + str(price) + "; change: "
+                stockprices += str(round((data[0]["close"]-data[0]["open"])*100/data[0]["close"],2)) + "%      "
+            except Exception as e:
+                print(f"Error occurred: {e}")
+                continue
+        elif data:
+            return "*** Stock prices unavailable at the moment. ***" 
+    return stockprices + " *** "
+
+print(get_tinga_stock_prices(symbols))

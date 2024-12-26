@@ -50,14 +50,24 @@ class ScrollImage(SampleBase):
         offset_x = (self.matrix.width - self.image.width) // 2
         offset_y = (self.matrix.height - self.image.height) // 2
         dispImage = self.image.convert('RGB')
-        for i in range(self.matrix.width + self.image.width):
-            offset_x = i - self.image.width
-            self.matrix.SetImage(dispImage, offset_x, offset_y)
-            time.sleep(0.02)
-            self.matrix.Clear()
+        #for i in range(self.matrix.width + self.image.width):
+            #offset_x = i - self.image.width
+            #self.matrix.SetImage(dispImage, offset_x, offset_y)
+            #time.sleep(0.02)
+            #self.matrix.Clear()
         
-        offset_x = (self.matrix.width - self.image.width) // 2
-        for i in range(self.matrix.height + self.image.height):
-            offset_y = i - self.image.height
-            self.matrix.SetImage(dispImage, offset_x, -offset_y)
+        #offset_x = (self.matrix.width - self.image.width) // 2
+        #for i in range(self.matrix.height + self.image.height):
+        for i in range(self.matrix.height):
+            self.matrix.Clear()
+            offset_y = i - self.matrix.height
+            self.matrix.SetImage(dispImage, offset_x, offset_y)
+            time.sleep(0.04)
+        time.sleep(2)
+
+        range_x = (self.matrix.width - self.image.width) // 2
+        for i in range(range_x):
+            self.matrix.Clear()
+            offset_x = offset_x - i
+            self.matrix.SetImage(dispImage, offset_x, offset_y)
             time.sleep(0.04)

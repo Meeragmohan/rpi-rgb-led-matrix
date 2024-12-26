@@ -17,6 +17,6 @@ def listallcountries():
         filename = os.path.join('./flags', os.path.basename(flag_url))
         download_flag(flag_url, filename)
         print(f"Downloaded flag for {country['name_en']}")
-        
+
 
 listallcountries()

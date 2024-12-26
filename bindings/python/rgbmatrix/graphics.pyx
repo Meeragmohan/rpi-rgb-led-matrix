@@ -28,7 +28,7 @@ cdef class Font:
         return self.__font.CharacterWidth(char)
 
     def LoadFont(self, file):
-        if (not self.__font.LoadFont(file.encode('utf-8'))):
+        if (not self.__font.LoadFont()):
             raise Exception("Couldn't load font " + file)
 
     def DrawGlyph(self, core.Canvas c, int x, int y, Color color, uint32_t char):

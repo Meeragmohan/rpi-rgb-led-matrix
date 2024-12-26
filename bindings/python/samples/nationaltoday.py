@@ -10,13 +10,15 @@ def get_today_event():
     today = datetime.date.today()
     # Get today's month in lowercase
     today_month = today.strftime("%B").lower()
+    print(today_month)
 
     # Read the contents of the JSON file
     with open('/home/cyclops/Projects/rpi-rgb-led-matrix/bindings/python/samples/nationaltoday/' + today_month +'-holidays.json') as file:
         data = json.load(file)
 
     # Format today's date as "MMM DD"
-    today_formatted = today.strftime("%b %d")
+    today_formatted = today.strftime("%b %-d")
+    print(today_formatted)
 
     # Loop through each item in the data list
     for item in data:

@@ -42,7 +42,6 @@ def populateItems():
 
     for url in feeds:
         feed=feedparser.parse(url)
-        print(feed["feed"]["title"])
         items.append("" + feed["feed"]["title"])
         print(feed["feed"]["title"]) 
         posts=feed["items"]

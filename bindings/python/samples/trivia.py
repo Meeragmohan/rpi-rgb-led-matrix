@@ -1,6 +1,6 @@
 import requests
 
-def generateTrivia():
+def generateTrivia(basepath):
     url = "https://opentdb.com/api.php?amount=3&encode=url3986"
 
     response = requests.get(url)
@@ -11,8 +11,11 @@ def generateTrivia():
         for result in results:
             question = requests.utils.unquote(result["question"])
             correct_answer = requests.utils.unquote(result["correct_answer"])
+            with open(basepath+"trivia/generaltrivia.txt", "a") as file:
+                file.write(question + "," + correct_answer + "\n")
+
             trivia = trivia + "      Question: " + question + " ... 5 ... 4 ... 3 ... 2 ... 1 ... Correct Answer: " + correct_answer
 
     return trivia
 
-print (generateTrivia())
+#print (generateTrivia("./"))

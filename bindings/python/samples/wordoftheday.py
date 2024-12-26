@@ -14,7 +14,7 @@ def fetchWordOfTheDay():
     for item in root.findall(".//item"):
         title = item.find("title").text
         description = item.find("description").text
-        wotd = "Word of the day: " + title + " - " + description
+        wotd = "Word of the day: " + title + " - " + description + " - " + title
     return wotd
 
-print (fetchWordOfTheDay())
+#print (fetchWordOfTheDay())
